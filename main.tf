@@ -103,6 +103,11 @@ resource "aws_apigatewayv2_stage" "lambda" {
   name        = "serverless_lambda_stage"
   auto_deploy = true
 
+  default_route_settings {
+    throttling_burst_limit = 5
+    throttling_rate_limit = 10
+  }
+
   access_log_settings {
     destination_arn = aws_cloudwatch_log_group.api_gw_logs.arn
 
